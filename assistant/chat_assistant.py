@@ -30,6 +30,3 @@ conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm)
 while True:
     query = input("Query: ")
     print(conversation.predict(input=query))
-
-
- 
