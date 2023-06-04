@@ -1,0 +1,11 @@
+python-dotenv
+openai
+langchain
+whisper
+numpy
+more-itertools
+transformers
+ffmpeg-python
+pyaudio
+SpeechRecognition
+pydub
