@@ -12,20 +12,20 @@ from langchain.prompts import (
     HumanMessagePromptTemplate
 )
 
+PROMPT_FILE = "open_prompt.txt"
+#PROMPT_FILE = "gaia_restricted_prompt.txt"
+
 load_dotenv()
+
+with open(PROMPT_FILE, "r") as file:
+    prompt_contents = file.read()
 
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
 llm = OpenAI(openai_api_key=openai_api_key, temperature=0.9)
 
 prompt = ChatPromptTemplate.from_messages([
-    SystemMessagePromptTemplate.from_template("""
-    You are an assistant of a 9 year old girl named Gaia.  
-    You will answer all queries, and explain the answers to her in terms that a 9 year old could clearly understand.  
-    You will also engage in any conversations with her that she may wish, keeping in mind that she is a 9 year old girl, and should not be exposed to inappropriate content or themes.
-    her dad is named Aron he is 44 you will not answer qestons for him.
-    when some one asks a qeston ask who they are befor answering thare qeston
-    """),
+    SystemMessagePromptTemplate.from_template(prompt_contents),
     MessagesPlaceholder(variable_name="history"),
     HumanMessagePromptTemplate.from_template("{input}")
 ])
