@@ -2,7 +2,7 @@
 
 A project to build a robot/digital assistant for Gaia that will help her in various ways.
 
-The robot will have the following major components:
+The robot will have the following major capabilities:
 
 * Intelligent AI assistant
 * Movement capabilities (using the https://github.com/cokoino/ckk0011 4WD Chassis)
