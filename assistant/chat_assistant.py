@@ -1,4 +1,9 @@
 import os
+import sys
+sys.path.append(os.getcwd())
+
+from voice import text_to_speech
+
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
 from langchain import OpenAI, ConversationChain
@@ -12,7 +17,7 @@ from langchain.prompts import (
     HumanMessagePromptTemplate
 )
 
-PROMPT_FILE = "open_prompt.txt"
+PROMPT_FILE = "assistant/open_prompt.txt"
 #PROMPT_FILE = "gaia_restricted_prompt.txt"
 
 load_dotenv()
@@ -33,6 +38,13 @@ prompt = ChatPromptTemplate.from_messages([
 memory = ConversationBufferMemory(return_messages=True)
 conversation = ConversationChain(memory=memory, prompt=prompt, llm=llm)
 
+megen_t = text_to_speech
+
 while True:
     query = input("Query: ")
-    print(conversation.predict(input=query))
+    
+    answer = conversation.run(input=query)
+
+    print(answer)
+
+    megen_t.speak(answer[answer.find("\n\nSystem:") + len("System: "):])

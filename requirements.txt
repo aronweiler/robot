@@ -9,3 +9,4 @@ ffmpeg-python
 pyaudio
 SpeechRecognition
 pydub
+pyttsx3
